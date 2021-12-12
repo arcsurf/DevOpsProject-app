@@ -21,11 +21,11 @@ pipeline {
 
         stage ('Image validation') {
             //agent {
-                docker {
+                //docker {
                     // label 'general'
                     //image "image_name_and_path/${DOCKER_IMAGE}:${commit}"
                     //args  '--group-add 999 -v /home/jenkins:/home/jenkins -v /var/run/docker.sock:/var/run/docker.sock'
-                }
+                //}
             //}
 
             steps {
