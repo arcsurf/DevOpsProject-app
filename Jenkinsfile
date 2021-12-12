@@ -37,6 +37,12 @@ pipeline {
         }
 
         stage ('Publish image') {
+            steps {
+                script {
+                    echo 'Publishing image to Docker Hub'
+                    // sh './validation.sh'
+                }
+            }
         }
 
         stage ('Deploy image to ${DEPLOY_ENV}') {
