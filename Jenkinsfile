@@ -11,7 +11,8 @@ pipeline {
         stage ('Build Docker image') {
             steps {
                 script {
-                    commit = getCommit()
+                    // commit = getCommit()
+                    echo ${DOCKER_IMAGE}
                     echo 'Building Docker image..'
                     sh "echo 'building Docker image...'"
                     //sh "./build-tag-push.sh ${DOCKER_IMAGE}"
