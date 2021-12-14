@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t arcsurfing/devopsapp:v0.0.1 .
+sudo -i docker build -t arcsurfing/devopsapp:v0.0.1 .
