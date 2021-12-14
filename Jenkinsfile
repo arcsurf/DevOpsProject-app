@@ -33,11 +33,16 @@ pipeline {
                     //args  '--group-add 999 -v /home/jenkins:/home/jenkins -v /var/run/docker.sock:/var/run/docker.sock'
                 //}
             //}
-
+            steps {
+                script {
+                    echo 'running container locally'
+                    sh "docker run -d -p 5000:5000 ${DOCKER_IMAGE}:${VERSION}"
+                }
+            }
             steps {
                 script {
                     echo 'Start image validation'
-                    // sh './validation.sh'
+                    sh "curl -X POST -H 'Content-Type: text/plain' -d '(1.115,2.119), (1.108,2.220), (1.101,2.209), (1.110,2.209), (1.112,2.212)' http://localhost:5000/calculate"
                 }
             }
         }
