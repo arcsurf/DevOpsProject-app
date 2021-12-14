@@ -6,7 +6,7 @@ def DOCKER_APP_SERVER_USER = 'ubuntu'
 def DOCKER_APP_SERVER_HOST = 'app.couso.com.ar'
 def DOCKER_IMAGE = 'arcsurfing/devopsapp'
 def DEPLOY_ENV = 'prod'
-def VERSION = 'v0.0.4'
+def VERSION = 'v0.0.5'
 def commit
 
 pipeline {
