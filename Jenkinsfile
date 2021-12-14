@@ -31,7 +31,7 @@ pipeline {
                 script {
                     echo 'running container locally'
                     sh "docker rm -f app_${DEPLOY_ENV} || true"
-                    sh "docker run -d -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}"
+                    sh "docker run -d -p 5001:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}"
                 }
             }
 
@@ -66,7 +66,7 @@ pipeline {
                     //sh "docker -H ssh://ubuntu@app.couso.com.ar rm -f app_prod"
                     //sh "docker -H ssh://ubuntu@app.couso.com.ar run -d -p 5000:5000 --name app_prod arcsurfing/devopsapp:v0.0.4"
                     sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} rm -f app_${DEPLOY_ENV} || true"
-                    sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} run -d -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}"
+                    sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} run -d -p 5001:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}"
                     //sh "chmod +x docker-deploy.sh"
                     //sh "./docker-deploy.sh"
                     echo "Deployed!"
