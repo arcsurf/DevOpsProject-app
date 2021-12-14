@@ -36,7 +36,8 @@ pipeline {
             steps {
                 script {
                     echo 'running container locally'
-                    sh "docker run -d -p 5000:5000 ${DOCKER_IMAGE}:${VERSION}"
+                    sh "docker rm -f ${DOCKER_IMAGE}:${VERSION}"
+                    sh "docker run -d -p 5000:5000 ${DOCKER_IMAGE}:${VERSION} --name ${DOCKER_IMAGE}:${VERSION}"
                 }
             }
 
