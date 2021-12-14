@@ -19,8 +19,8 @@ pipeline {
                     sh "echo 'building Docker image...'"
                     // docker.build
                     //sh "chmod +x docker-build.sh"
-                    sh "./docker-build.sh"
-                    //sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
+                    //sh "./docker-build.sh"
+                    sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
                 }
             }
         }
