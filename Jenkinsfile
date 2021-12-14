@@ -18,7 +18,6 @@ pipeline {
                     echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
                     // docker.build
-                    //sh "chmod +x docker-build.sh"
                     //sh "./docker-build.sh"
                     sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
                 }
@@ -36,8 +35,8 @@ pipeline {
             steps {
                 script {
                     echo 'running container locally'
-                    sh "docker rm -f ${DOCKER_IMAGE}:${VERSION}"
-                    sh "docker run -d -p 5000:5000 ${DOCKER_IMAGE}:${VERSION} --name ${DOCKER_IMAGE}:${VERSION}"
+                    sh "docker rm -f ${DOCKER_IMAGE}:${VERSION} || true"
+                    sh "docker run -d -p 5000:5000 --name ${DOCKER_IMAGE}:${VERSION} ${DOCKER_IMAGE}:${VERSION}"
                 }
             }
 
