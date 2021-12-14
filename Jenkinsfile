@@ -2,9 +2,11 @@
 
 def DOCKER_HUB_USER = 'arcsurfing'
 def DOCKER_HUB_TOKEN = '43e86ce5-89d1-4082-a0f2-5599644a7256'
+def DOCKER_APP_SERVER_USER = 'ubuntu'
+def DOCKER_APP_SERVER_HOST = 'app.couso.com.ar'
 def DOCKER_IMAGE = 'arcsurfing/devopsapp'
 def DEPLOY_ENV = 'prod'
-def VERSION = 'v0.0.2'
+def VERSION = 'v0.0.3'
 def commit
 
 pipeline {
@@ -60,8 +62,9 @@ pipeline {
             steps {
                 script {
                     echo "replacing running container app_${DEPLOY_ENV}"
-                    //sh "docker -H=app.couso.com.ar rm -f app_${DEPLOY_ENV} || true'
-                    //sh "docker -H=app.couso.com.ar run --restart-always -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}'
+                    sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} login -u='${DOCKER_HUB_USER}' -p='${DOCKER_HUB_TOKEN}'"
+                    sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} rm -f app_${DEPLOY_ENV} || true'
+                    sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} run --restart-always -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}'
                     echo "Deployed!"
                 }
             }
