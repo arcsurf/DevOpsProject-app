@@ -5,7 +5,7 @@ def DOCKER_HUB_TOKEN = '43e86ce5-89d1-4082-a0f2-5599644a7256'
 def DOCKER_APP_SERVER_USER = 'ubuntu'
 def DOCKER_APP_SERVER_HOST = 'app.couso.com.ar'
 def DOCKER_IMAGE = 'arcsurfing/devopsapp'
-def DEPLOY_ENV = 'prod'
+def DEPLOY_ENV = 'staging'
 def VERSION = 'v0.0.5'
 def commit
 
