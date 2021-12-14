@@ -17,7 +17,7 @@ pipeline {
                     // commit = getCommit()
                     echo 'Building Docker image ${DOCKER_IMAGE} for version ${VERSION}'
                     sh "echo 'building Docker image...'"
-                    sh "sudo -i docker build -t arcsurfing/devopsapp:v0.0.1 ."
+                    sh "sudo -S docker build -t arcsurfing/devopsapp:v0.0.1 ."
                 }
             }
         }
