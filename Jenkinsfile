@@ -19,8 +19,8 @@ pipeline {
                     sh "echo 'building Docker image...'"
                     // docker.build
                     //sh "chmod +x docker-build.sh"
-                    //sh "./docker-build.sh"
-                    sh "docker build -t arcsurfing/devopsapp:v0.0.1 ."
+                    sh "./docker-build.sh"
+                    //sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
         stage ('Publish image') {
             steps {
                 script {
-                    echo 'Publishing ${DOCKER_IMAGE}:${VERSION} to Docker Hub'
+                    echo "Publishing ${DOCKER_IMAGE}:${VERSION} to Docker Hub"
                     // sh "docker push ${DOCKER_IMAGE}:${VERSION}"
                     // sh './validation.sh'
                 }
@@ -55,10 +55,10 @@ pipeline {
         stage ('Deploy image to ${DEPLOY_ENV}') {
             steps {
                 script {
-                    echo 'replacing running container ${DOCKER_IMAGE}_${DEPLOY_ENV}'
-                    //sh 'docker -H=app.couso.com.ar rm -f ${DOCKER_IMAGE}_${DEPLOY_ENV} || true'
-                    //sh 'docker -H=app.couso.com.ar run --restart-always -p 80:80 --name ${DOCKER_IMAGE}_${DEPLOY_ENV}'
-                    echo 'Deployed!'
+                    echo "replacing running container ${DOCKER_IMAGE}_${DEPLOY_ENV}"
+                    //sh "docker -H=app.couso.com.ar rm -f ${DOCKER_IMAGE}_${DEPLOY_ENV} || true'
+                    //sh "docker -H=app.couso.com.ar run --restart-always -p 80:80 --name ${DOCKER_IMAGE}_${DEPLOY_ENV}'
+                    echo "Deployed!"
                 }
             }
         }
