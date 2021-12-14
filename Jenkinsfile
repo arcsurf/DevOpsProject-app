@@ -73,5 +73,14 @@ pipeline {
                 }
             }
         }
+        stage ('Test container remotely') {
+            steps {
+                script {
+                    echo 'running a curl'
+                    sh "chmod +x curl-remote-test.sh"
+                    sh "./curl-remote-test.sh"
+                }
+            }
+        }
     }
 }
