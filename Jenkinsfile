@@ -8,6 +8,7 @@ def DOCKER_IMAGE = 'arcsurfing/devopsapp'
 def DEPLOY_ENV = 'prod'
 def VERSION = 'v0.0.4'
 def commit
+export DOCKER_HOST=
 
 pipeline {
     agent any
@@ -37,7 +38,7 @@ pipeline {
 
         }
 
-        stage ('Test image locally') {
+        stage ('Test container locally') {
             steps {
                 script {
                     echo 'running a curl'
@@ -63,10 +64,11 @@ pipeline {
                 script {
                     echo "replacing running container app_${DEPLOY_ENV}"
                     //sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} login -u='${DOCKER_HUB_USER}' -p='${DOCKER_HUB_TOKEN}'"
+                    sh "ssh ubuntu@app.couso.com.ar 'docker ps'"
                     //sh "docker -H ssh://ubuntu@app.couso.com.ar rm -f app_prod"
-                    sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} rm -f app_${DEPLOY_ENV} || true"
-                    sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} run -d -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}"
                     //sh "docker -H ssh://ubuntu@app.couso.com.ar run -d -p 5000:5000 --name app_prod arcsurfing/devopsapp:v0.0.4"
+                    //sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} rm -f app_${DEPLOY_ENV} || true"
+                    //sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} run -d -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}"
                     //sh "chmod +x docker-deploy.sh"
                     //sh "./docker-deploy.sh"
                     echo "Deployed!"
