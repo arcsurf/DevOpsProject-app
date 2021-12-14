@@ -17,7 +17,7 @@ pipeline {
                     // commit = getCommit()
                     echo 'Building Docker image ${DOCKER_IMAGE} for version ${VERSION}'
                     sh "echo 'building Docker image...'"
-                    //sh "./build-tag-push.sh ${DOCKER_IMAGE}"
+                    sh "docker build -t arcsurfing/devopsapp:v0.0.1 ."
                 }
             }
         }
