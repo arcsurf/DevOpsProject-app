@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     // commit = getCommit()
-                    echo 'Building Docker image ${DOCKER_IMAGE} for version ${VERSION}'
+                    echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
                     sh "docker build -t arcsurfing/devopsapp:v0.0.1 ."
                 }
