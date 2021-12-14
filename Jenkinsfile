@@ -8,7 +8,6 @@ def DOCKER_IMAGE = 'arcsurfing/devopsapp'
 def DEPLOY_ENV = 'prod'
 def VERSION = 'v0.0.4'
 def commit
-export DOCKER_HOST=
 
 pipeline {
     agent any
