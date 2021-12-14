@@ -53,17 +53,17 @@ pipeline {
             }
         }
 
-        stage ('Publish image') {
+        stage ('Publish image to Docker Hub') {
             steps {
                 script {
                     echo "Publishing ${DOCKER_IMAGE}:${VERSION} to Docker Hub"
-                    // sh "docker push ${DOCKER_IMAGE}:${VERSION}"
-                    // sh './validation.sh'
+                    sh "echo '${DOCKER_HUB_TOKEN}' | docker login --username ${DOCKER_HUB_USER} --password-stdin"
+                    sh "docker push ${DOCKER_IMAGE}:${VERSION}"
                 }
             }
         }
 
-        stage ('Deploy image') {
+        stage ('Deploy image to App Server') {
             steps {
                 script {
                     echo "replacing running container app_${DEPLOY_ENV}"
