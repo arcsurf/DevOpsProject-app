@@ -35,8 +35,8 @@ pipeline {
             steps {
                 script {
                     echo 'running container locally'
-                    sh "docker rm -f ${DOCKER_IMAGE}:${VERSION} || true"
-                    sh "docker run -d -p 5000:5000 --name ${DOCKER_IMAGE}:${VERSION} ${DOCKER_IMAGE}:${VERSION}"
+                    sh "docker rm -f app_${DEPLOY_ENV} || true"
+                    sh "docker run -d -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}"
                 }
             }
 
@@ -64,9 +64,9 @@ pipeline {
         stage ('Deploy image') {
             steps {
                 script {
-                    echo "replacing running container ${DOCKER_IMAGE}_${DEPLOY_ENV}"
-                    //sh "docker -H=app.couso.com.ar rm -f ${DOCKER_IMAGE}_${DEPLOY_ENV} || true'
-                    //sh "docker -H=app.couso.com.ar run --restart-always -p 80:80 --name ${DOCKER_IMAGE}_${DEPLOY_ENV}'
+                    echo "replacing running container app_${DEPLOY_ENV}"
+                    //sh "docker -H=app.couso.com.ar rm -f app_${DEPLOY_ENV} || true'
+                    //sh "docker -H=app.couso.com.ar run --restart-always -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}'
                     echo "Deployed!"
                 }
             }
