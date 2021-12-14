@@ -17,10 +17,10 @@ pipeline {
                     // commit = getCommit()
                     echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
-                    docker.build
+                    // docker.build
                     //sh "chmod +x docker-build.sh"
                     //sh "./docker-build.sh"
-                    // sh "docker build -t arcsurfing/devopsapp:v0.0.1 ."
+                    sh "docker build -t arcsurfing/devopsapp:v0.0.1 ."
                 }
             }
         }
