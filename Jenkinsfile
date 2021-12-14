@@ -52,7 +52,7 @@ pipeline {
             }
         }
 
-        stage ("Deploy image to ${DEPLOY_ENV}") {
+        stage ('Deploy image') {
             steps {
                 script {
                     echo "replacing running container ${DOCKER_IMAGE}_${DEPLOY_ENV}"
