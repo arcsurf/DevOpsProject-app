@@ -19,7 +19,6 @@ pipeline {
                     echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
                     sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
-                    echo GIT_COMMIT %GIT_COMMIT% 
                 }
             }
         }
