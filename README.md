@@ -4,7 +4,7 @@
 
 #### You can test the production or stagin app from the public side doing a curl POST METHOD to:
 ##### Production: http://app.couso.com.ar:5000/calculate
-##### Staging: http://app.couso.com.ar:5001/calculate
+##### develop: http://app.couso.com.ar:5001/calculate
 
 #### Example:
 ```
