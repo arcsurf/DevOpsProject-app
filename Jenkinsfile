@@ -16,6 +16,7 @@ pipeline {
         stage ('Build Docker image') {
             steps {
                 script {
+                    echo "GIT_PREVIOUS_COMMIT is ${GIT_PREVIOUS_COMMIT}"
                     // commit = getCommit()
                     echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
