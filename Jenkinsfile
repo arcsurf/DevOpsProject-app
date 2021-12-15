@@ -16,13 +16,10 @@ pipeline {
         stage ('Build Docker image') {
             steps {
                 script {
-                    echo "GIT_PREVIOUS_COMMIT is ${GIT_PREVIOUS_COMMIT}"
-                    // commit = getCommit()
                     echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
-                    // docker.build
-                    //sh "./docker-build.sh"
                     sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
+                    echo GIT_COMMIT %GIT_COMMIT% 
                 }
             }
         }
@@ -44,7 +41,6 @@ pipeline {
                     echo 'running a curl'
                     sh "chmod +x curl-test.sh"
                     sh "./curl-test.sh || true"
-                    //sh "curl -X POST -H 'Content-Type: text/plain' -d '(1.115,2.119), (1.108,2.220), (1.101,2.209), (1.110,2.209), (1.112,2.212)' http://localhost:5000/calculate"
                 }
             }
         }
