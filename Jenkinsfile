@@ -62,9 +62,6 @@ pipeline {
             steps {
                 script {
                     echo "replacing running container app_${DEPLOY_ENV}"
-                    //sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} login -u='${DOCKER_HUB_USER}' -p='${DOCKER_HUB_TOKEN}'"
-                    //sh "docker -H ssh://ubuntu@app.couso.com.ar rm -f app_prod"
-                    //sh "docker -H ssh://ubuntu@app.couso.com.ar run -d -p 5000:5000 --name app_prod arcsurfing/devopsapp:v0.0.4"
                     sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} rm -f app_${DEPLOY_ENV} || true"
                     sh "docker -H ssh://${DOCKER_APP_SERVER_USER}@${DOCKER_APP_SERVER_HOST} run -d -p 5000:5000 --name app_${DEPLOY_ENV} ${DOCKER_IMAGE}:${VERSION}"
                     //sh "chmod +x docker-deploy.sh"
