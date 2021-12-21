@@ -7,7 +7,6 @@ def DOCKER_APP_SERVER_HOST = 'app.couso.com.ar'
 def DOCKER_IMAGE = 'arcsurfing/devopsapp'
 def DEPLOY_ENV = 'staging'
 def VERSION = 'v0.0.6'
-def commit
 
 pipeline {
     agent any
