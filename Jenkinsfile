@@ -1,7 +1,8 @@
 #!groovy
 
 def DOCKER_HUB_USER = 'arcsurfing'
-def DOCKER_HUB_TOKEN = '43e86ce5-89d1-4082-a0f2-5599644a7256'
+def DOCKER_HUB_TOKEN = credentials('d66d6142-a8bf-420f-a0e0-6043ff297014')
+// def DOCKER_HUB_TOKEN = '43e86ce5-89d1-4082-a0f2-5599644a7256'
 def DOCKER_APP_SERVER_USER = 'ubuntu'
 def DOCKER_APP_SERVER_HOST = 'app.couso.com.ar'
 def DOCKER_IMAGE = 'arcsurfing/devopsapp'
@@ -11,15 +12,10 @@ def VERSION = 'v0.0.5'
 pipeline {
     agent any
 
-    environment {
-        DOCKER_HUB_CREDS = credentials('d66d6142-a8bf-420f-a0e0-6043ff297014')
-    }
-
     stages {
         stage ('Build Docker image') {
             steps {
                 script {
-                    echo "${DOCKER_HUB_CREDS}"
                     echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
                     sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
@@ -52,7 +48,7 @@ pipeline {
             steps {
                 script {
                     echo "Publishing ${DOCKER_IMAGE}:${VERSION} to Docker Hub"
-                    sh "docker login -u='${DOCKER_HUB_USER}' -p='${DOCKER_HUB_TOKEN}'"
+                    sh "docker login -u='${DOCKER_HUB_USER}' -p='${DOCKER_HUB_TOKEN_PSW}'"
                     sh "docker image push ${DOCKER_IMAGE}:${VERSION}"
                 }
             }
