@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     echo "Publishing ${DOCKER_IMAGE}:${VERSION} to Docker Hub"
-                    sh "docker login -u='${DOCKER_HUB_USER}' -p='${DOCKER_HUB_TOKEN}'"
+                    sh "docker login -u='${DOCKER_HUB_USER}' -p='${DOCKER_HUB_TOKEN_PSW}'"
                     sh "docker image push ${DOCKER_IMAGE}:${VERSION}"
                 }
             }
