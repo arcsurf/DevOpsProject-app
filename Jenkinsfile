@@ -11,10 +11,15 @@ def VERSION = 'v0.0.5'
 pipeline {
     agent any
 
+    environment {
+        DOCKER_HUB_CREDS = credentials('d66d6142-a8bf-420f-a0e0-6043ff297014')
+    }
+
     stages {
         stage ('Build Docker image') {
             steps {
                 script {
+                    echo "${DOCKER_HUB_CREDS}"
                     echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
                     sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
