@@ -5,7 +5,7 @@ def DOCKER_APP_SERVER_USER = 'ubuntu'
 def DOCKER_APP_SERVER_HOST = 'app.couso.com.ar'
 def DOCKER_IMAGE = 'arcsurfing/devopsapp'
 def DEPLOY_ENV = 'staging'
-def VERSION = 'v0.0.8-test6'
+def VERSION = 'v0.0.8-test8'
 
 pipeline {
     agent any
@@ -18,11 +18,8 @@ pipeline {
         stage ('Build Docker image') {
             steps {
                 script {
-                    // commit = getCommit()
                     echo "Building Docker image ${DOCKER_IMAGE} for version ${VERSION}"
                     sh "echo 'building Docker image...'"
-                    // docker.build
-                    //sh "./docker-build.sh"
                     sh "docker build -t ${DOCKER_IMAGE}:${VERSION} ."
                 }
             }
