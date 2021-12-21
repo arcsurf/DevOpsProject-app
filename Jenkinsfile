@@ -1,7 +1,6 @@
 #!groovy
 
 def DOCKER_HUB_USER = 'arcsurfing'
-def DOCKER_HUB_TOKEN = credentials('d66d6142-a8bf-420f-a0e0-6043ff297014')
 // def DOCKER_HUB_TOKEN = '43e86ce5-89d1-4082-a0f2-5599644a7256'
 def DOCKER_APP_SERVER_USER = 'ubuntu'
 def DOCKER_APP_SERVER_HOST = 'app.couso.com.ar'
@@ -11,6 +10,10 @@ def VERSION = 'v0.0.5'
 
 pipeline {
     agent any
+
+    environment {
+        DOCKER_HUB_TOKEN = credentials('d66d6142-a8bf-420f-a0e0-6043ff297014')
+    }
 
     stages {
         stage ('Build Docker image') {
