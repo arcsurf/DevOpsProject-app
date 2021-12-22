@@ -47,7 +47,7 @@ def calculate():
             & (pd.to_numeric(pd_stream[1], errors='coerce').notnull())]
 
         response = np.cov(np.array(pd_stream.values, dtype=float)).tolist()
-        response.append("testing6")
+        response.append("testing7")
         return json.dumps(response), 200
     except Exception:
         return "internal error", 500
