@@ -3,7 +3,7 @@
 def DOCKER_HUB_USER = 'arcsurfing'
 def DOCKER_APP_SERVER_USER = 'ubuntu'
 def DOCKER_APP_SERVER_HOST = 'app.couso.com.ar'
-def DOCKER_IMAGE = 'arcsurfing/devopsapp'
+def DOCKER_IMAGE = 'myprofile/devopsapp'
 def DEPLOY_ENV = 'prod'
 def VERSION = 'v0.0.7'
 
@@ -11,7 +11,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_TOKEN = credentials('d66d6142-a8bf-420f-a0e0-6043ff297014')
+        DOCKER_HUB_TOKEN = credentials('TOBESET')
     }
 
     stages {
